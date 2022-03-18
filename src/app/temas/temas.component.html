@@ -36,8 +36,8 @@
             <td>{{tema.descricao}}</td>
             <td>
               <div class="d-flex justify-content-around">
-                <button class='btn btn-outline-info'>Editar</button>
-                <button class='btn btn-outline-danger'>Apagar</button>
+                <button class='btn btn-outline-info' [routerLink]="['/editarTema', tema.id]" >Editar</button>
+                <button class='btn btn-outline-danger' [routerLink]="['/apagarTema', tema.id]" >Apagar</button>
               </div>
             </td>
             
