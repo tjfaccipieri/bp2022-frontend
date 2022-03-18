@@ -12,6 +12,7 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TemasComponent } from './temas/temas.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
