@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { TemasService } from './../service/temas.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { Component, OnInit } from '@angular/core';
+import { Tema } from '../model/tema';
 
 @Component({
   selector: 'app-temas',
