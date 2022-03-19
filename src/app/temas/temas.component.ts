@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-temas',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemasComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    window.scroll(0,0)
+
+    if(environment.token == '') {
+      alert('Você precisa estar logado para acessar essa tela')
+      this.router.navigate(['/entrar'])
+    }
   }
 
 }
