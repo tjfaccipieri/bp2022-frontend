@@ -13,6 +13,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TemasComponent } from './temas/temas.component';
 import { EditarTemaComponent } from './edit/editar-tema/editar-tema.component';
 import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.component';
+import { EditarPostagemComponent } from './edit/editar-postagem/editar-postagem.component';
+import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-postagem.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.compone
     InicioComponent,
     TemasComponent,
     EditarTemaComponent,
-    DeletarTemaComponent
+    DeletarTemaComponent,
+    EditarPostagemComponent,
+    DeletarPostagemComponent
   ],
   imports: [
     BrowserModule,

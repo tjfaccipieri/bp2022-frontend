@@ -75,8 +75,8 @@
                   <small class="text-secondary">Postagem feita às {{postagem.data | date: 'HH:mm'}} do dia {{postagem.data | date: 'dd/MM/yyyy'}}</small>
                 </div>
                 <div class="d-flex justify-content-around mt-3">
-                  <button class="btn btn-outline-info w-25">Editar</button>
-                  <button class="btn btn-outline-danger w-25">Apagar</button>
+                  <button class="btn btn-outline-info w-25" [routerLink]="['/editarPostagem', postagem.id]">Editar</button>
+                  <button class="btn btn-outline-danger w-25" [routerLink]="['/apagarPostagem', postagem.id]">Apagar</button>
                 </div>
               </div>
             </div>

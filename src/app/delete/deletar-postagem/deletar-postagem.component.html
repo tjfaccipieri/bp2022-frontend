@@ -1,0 +1,11 @@
+<div class="container-fluid my-4">
+  <div class="container d-flex flex-column align-items-center">
+    <h2>Apagar Postagem</h2>
+
+    <p>A Postagem com o título: <span class="fw-bold">{{postagem.titulo}}</span> será apagada. Você tem certeza disso? </p>
+    <div class="d-flex col-md-6 justify-content-around">
+      <button class="btn btn-outline-dark" routerLink='/inicio'>Cancelar</button>
+      <button class="btn btn-outline-danger" (click)="apagarPostagem()">Apagar</button>
+    </div>
+  </div>
+</div>

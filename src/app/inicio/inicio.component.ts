@@ -35,10 +35,10 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
     window.scroll(0,0)
 
-    // if(environment.token == '') {
-    //   this.router.navigate(['/entrar'])
-    //   alert('Você precisa estar logado para acessar essa tela')
-    // }
+    if(environment.token == '') {
+      this.router.navigate(['/entrar'])
+      alert('Você precisa estar logado para acessar essa tela')
+    }
 
     this.auth.refreshToken()
     this.getAllTemas()
