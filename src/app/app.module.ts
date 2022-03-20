@@ -15,6 +15,7 @@ import { EditarTemaComponent } from './edit/editar-tema/editar-tema.component';
 import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.component';
 import { EditarPostagemComponent } from './edit/editar-postagem/editar-postagem.component';
 import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-postagem.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-post
     EditarTemaComponent,
     DeletarTemaComponent,
     EditarPostagemComponent,
-    DeletarPostagemComponent
+    DeletarPostagemComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

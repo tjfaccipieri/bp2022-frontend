@@ -33,6 +33,10 @@ export class AuthService {
   logar(usuarioLogin: UsuarioLogin): Observable<UsuarioLogin> {
     return this.http.post<UsuarioLogin>('https://bp2022.herokuapp.com/usuarios/logar', usuarioLogin)
   }
+
+  editarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>('https://bp2022.herokuapp.com/usuarios/atualizar', usuario, this.token)
+  }
   
   logado(){
     let ok: boolean = false

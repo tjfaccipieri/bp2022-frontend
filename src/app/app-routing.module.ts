@@ -8,6 +8,7 @@ import { EditarTemaComponent } from './edit/editar-tema/editar-tema.component';
 import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.component';
 import { EditarPostagemComponent } from './edit/editar-postagem/editar-postagem.component';
 import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-postagem.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'entrar', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'apagarTema/:id', component: DeletarTemaComponent},
   {path: 'editarPostagem/:id', component: EditarPostagemComponent},
   {path: 'apagarPostagem/:id', component: DeletarPostagemComponent},
+  {path: 'perfil', component: PerfilComponent},
 ];
 
 @NgModule({
