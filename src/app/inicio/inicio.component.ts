@@ -35,10 +35,10 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
     window.scroll(0,0)
 
-    // if(environment.token == '') {
-    //   this.router.navigate(['/entrar'])
-    //   alert('Você precisa estar logado para acessar essa tela')
-    // }
+    if(environment.token == '') {
+      this.router.navigate(['/entrar'])
+      alert('Você precisa estar logado para acessar essa tela')
+    }
 
     this.auth.refreshToken()
     this.getAllTemas()
@@ -64,7 +64,6 @@ export class InicioComponent implements OnInit {
   }
 
   publicarPostagem(){
-    this.tema.id = this.temaId
     this.postagem.tema = this.tema
 
     this.usuario.id = this.usuarioId

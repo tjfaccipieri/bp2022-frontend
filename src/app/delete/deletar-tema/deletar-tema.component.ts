@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './deletar-tema.component.html',
   styleUrls: ['./deletar-tema.component.css']
 })
+
 export class DeletarTemaComponent implements OnInit {
 
   idTema: number
@@ -24,7 +25,7 @@ export class DeletarTemaComponent implements OnInit {
     window.scroll(0,0)
     if(environment.token == '') {
       this.router.navigate(['/entrar']);
-      alert('Você precisa estar logado para editar o tema.')
+      alert('Você precisa estar logado para apagar o tema.')
     }
 
     this.idTema = this.route.snapshot.params['id']
