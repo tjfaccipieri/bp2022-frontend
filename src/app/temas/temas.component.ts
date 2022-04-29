@@ -12,18 +12,18 @@ import { AlertasService } from '../service/alertas.service';
 })
 export class TemasComponent implements OnInit {
 
-  tema: Tema = new Tema()
-  listaTemas: Tema[]
-
   constructor(
     private router: Router,
     private temaService: TemasService,
     private alerta: AlertasService
     ) { }
 
-  ngOnInit(){
+
+  ngOnInit() {
     window.scroll(0,0)
-    if (environment.token == '') {
+
+    if(environment.token == '') {
+      alert('Você precisa estar logado para acessar essa tela')
       this.router.navigate(['/entrar'])
       this.alerta.info('','Você precisa estar logado para cadastrar um novo tema')
     }
