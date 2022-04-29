@@ -8,6 +8,7 @@ import { Tema } from '../model/tema';
 import { Postagem } from '../model/postagem';
 import { Usuario } from '../model/usuario';
 import { AuthService } from '../service/auth.service';
+import { AlertasService } from '../service/alertas.service';
 
 import { environment } from 'src/environments/environment.prod';
 
@@ -39,7 +40,8 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemasService,
-    private auth: AuthService
+    private auth: AuthService,
+    private alerta: AlertasService
   ) { }
 
 
@@ -49,7 +51,7 @@ export class InicioComponent implements OnInit {
     if(environment.token == '') {
 
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para acessar essa tela')
+      this.alerta.info('','Você precisa estar logado para acessar essa tela')
     }
 
     this.auth.refreshToken()
@@ -84,7 +86,7 @@ export class InicioComponent implements OnInit {
 
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp;
-      alert('Postagem feita com sucesso')
+      this.alerta.sucesso('Temos um texto','Postagem feita com sucesso')
       this.postagem = new Postagem()
       this.getAllPostagens()
     })

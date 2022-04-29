@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tema } from 'src/app/model/tema';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { TemasService } from 'src/app/service/temas.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -17,14 +18,15 @@ export class DeletarTemaComponent implements OnInit {
   constructor(
     private router: Router,
     private temaService: TemasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
     window.scroll(0,0)
     if(environment.token == '') {
       this.router.navigate(['/entrar']);
-      alert('Você precisa estar logado para editar o tema.')
+      this.alerta.info('','Você precisa estar logado para editar o tema.')
     }
 
     this.idTema = this.route.snapshot.params['id']
@@ -39,7 +41,7 @@ export class DeletarTemaComponent implements OnInit {
 
   deletarTema(){
     this.temaService.deleteTema(this.idTema).subscribe(() => {
-      alert('Tema apagado com sucesso')
+      this.alerta.info('Processo concluido','Tema apagado com sucesso')
       this.router.navigate(['/temas'])
     })
   }

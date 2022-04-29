@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { PostagemService } from 'src/app/service/postagem.service';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-deletar-postagem',
@@ -17,7 +18,8 @@ export class DeletarPostagemComponent implements OnInit {
   constructor(
     private router: Router,
     private postagemService: PostagemService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class DeletarPostagemComponent implements OnInit {
 
     if(environment.token == '') {
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para acessar essa tela')
+      this.alerta.info('','Você precisa estar logado para acessar essa tela')
     }
 
     this.idPostagem = this.route.snapshot.params['id']
@@ -41,7 +43,7 @@ export class DeletarPostagemComponent implements OnInit {
   apagarPostagem() {
     this.postagemService.deletePostagem(this.idPostagem).subscribe(() => {
       this.router.navigate(['/inicio'])
-      alert('Postagem apagada com sucesso')
+      this.alerta.info('Processo concluido','Postagem apagada com sucesso')
     })
   }
 

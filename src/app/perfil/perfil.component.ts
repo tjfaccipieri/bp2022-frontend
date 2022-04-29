@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { AuthService } from '../service/auth.service';
+import { AlertasService } from '../service/alertas.service';
 
 @Component({
   selector: 'app-perfil',
@@ -17,7 +18,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class PerfilComponent implements OnInit {
 
     if(environment.token == '') {
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para acessar essa tela')
+      this.alerta.info('','Você precisa estar logado para acessar essa tela')
     }
 
     this.getUsuarioById()
@@ -46,7 +48,7 @@ export class PerfilComponent implements OnInit {
     if (this.usuario.senha == this.confirmarSenha) {
       this.auth.editarUsuario(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp;
-        alert('Usuario Atualizado com sucesso, faça o login novamente.')
+        this.alerta.sucesso('Edição de perfil','Usuario Atualizado com sucesso, faça o login novamente.')
         this.router.navigate(['/entrar'])
         environment.id = 0
         environment.foto = ''
@@ -55,7 +57,7 @@ export class PerfilComponent implements OnInit {
         environment.usuario = ''
       })
     } else {
-      alert('As senhas não coincidem')
+      this.alerta.erro('As senhas não coincidem', 'Por favor, verifique novamente os campos')
     }
   }
 

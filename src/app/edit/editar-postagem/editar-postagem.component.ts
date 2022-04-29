@@ -6,6 +6,7 @@ import { Postagem } from 'src/app/model/postagem';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';
 import { Usuario } from 'src/app/model/usuario';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-editar-postagem',
@@ -26,7 +27,8 @@ export class EditarPostagemComponent implements OnInit {
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class EditarPostagemComponent implements OnInit {
 
     if(environment.token == '') {
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para acessar essa tela')
+      this.alerta.info('','Você precisa estar logado para acessar essa tela')
     }
 
     this.idPostagem = this.route.snapshot.params['id']
@@ -66,7 +68,7 @@ export class EditarPostagemComponent implements OnInit {
 
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp;
-      alert('Postagem editada com sucesso')
+      this.alerta.sucesso('','Postagem editada com sucesso')
       this.router.navigate(['/inicio'])
     })
   }
