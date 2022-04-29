@@ -30,13 +30,15 @@
         <button class="nav-link" id="postagensTema-tab" data-bs-toggle="tab" data-bs-target="#postagensTema" type="button" role="tab" aria-controls="postagensTema" aria-selected="false">Postagens por tema</button>
       </li>
     </ul>
-  
+
     <div class="tab-content" id="myTabContent">
       <!-- ! Todas as postagens - Inicio -->
       <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
+
+        <input type="text" class="form-control w-50 mt-3 d-block mx-auto" [(ngModel)]="tituloPostagem" (input)="getPostagemByTitulo()" placeholder="Pesquise por um titulo">
+
         <div class="row d-flex flex-wrap mt-3">
-          
-          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of listaPostagens">
+          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of listaPostagens | orderBy : key : reverse" >
             <div class="card w-100">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
@@ -52,7 +54,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
       <!-- ! Todas as postagens - Fim -->
@@ -60,8 +62,8 @@
       <!-- ? Minhas postagens - Inicio -->
       <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">
         <div class="row d-flex flex-wrap mt-3">
-          
-          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of usuario.postagem">
+
+          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of usuario.postagem  | orderBy : key : reverse">
             <div class="card w-100">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
@@ -81,15 +83,16 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
       <!-- ? Minhas postagens - Fim -->
 
       <!-- ! Postagens por tema - Inicio -->
       <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="postagensTema-tab">
+        <input type="text" class="form-control w-50 mt-3 d-block mx-auto" [(ngModel)]="descricaoTema" (input)="getTemaByDescricao()" placeholder="Pesquise por um tema">
         <div class="row d-flex flex-wrap mt-3" *ngFor="let tema of listaTemas">
-            <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of tema.postagem">
+            <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of tema.postagem  | orderBy : key : reverse">
               <div class="card w-100">
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center">

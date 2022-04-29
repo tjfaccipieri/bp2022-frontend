@@ -16,6 +16,7 @@ import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.compone
 import { EditarPostagemComponent } from './edit/editar-postagem/editar-postagem.component';
 import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-postagem.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

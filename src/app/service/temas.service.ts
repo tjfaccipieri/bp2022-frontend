@@ -5,33 +5,56 @@ import { Observable } from 'rxjs';
 import { Tema } from '../model/tema';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TemasService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  token= {
-    headers: new HttpHeaders().set('Authorization', environment.token)
-  }
+  token = {
+    headers: new HttpHeaders().set('Authorization', environment.token),
+  };
 
   getAllTemas(): Observable<Tema[]> {
-    return this.http.get<Tema[]>('https://bp2022.herokuapp.com/temas', this.token)
+    return this.http.get<Tema[]>(
+      'https://bp2022.herokuapp.com/temas',
+      this.token
+    );
   }
 
   getTemaById(id: number): Observable<Tema> {
-    return this.http.get<Tema>(`https://bp2022.herokuapp.com/temas/${id}`, this.token)
+    return this.http.get<Tema>(
+      `https://bp2022.herokuapp.com/temas/${id}`,
+      this.token
+    );
+  }
+
+  getTemaByDescricao(descricao: string): Observable<Tema[]> {
+    return this.http.get<Tema[]>(
+      `https://bp2022.herokuapp.com/temas/descricao/${descricao}`,
+      this.token
+    );
   }
 
   postTema(tema: Tema): Observable<Tema> {
-    return this.http.post<Tema>('https://bp2022.herokuapp.com/temas', tema, this.token)
+    return this.http.post<Tema>(
+      'https://bp2022.herokuapp.com/temas',
+      tema,
+      this.token
+    );
   }
 
   putTema(tema: Tema): Observable<Tema> {
-    return this.http.put<Tema>('https://bp2022.herokuapp.com/temas', tema, this.token)
+    return this.http.put<Tema>(
+      'https://bp2022.herokuapp.com/temas',
+      tema,
+      this.token
+    );
   }
 
   deleteTema(id: number) {
-    return this.http.delete(`https://bp2022.herokuapp.com/temas/${id}`, this.token)
+    return this.http.delete(
+      `https://bp2022.herokuapp.com/temas/${id}`,
+      this.token
+    );
   }
 }
