@@ -11,6 +11,12 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TemasComponent } from './temas/temas.component';
+import { EditarTemaComponent } from './edit/editar-tema/editar-tema.component';
+import { DeletarTemaComponent } from './delete/deletar-tema/deletar-tema.component';
+import { EditarPostagemComponent } from './edit/editar-postagem/editar-postagem.component';
+import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-postagem.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -21,13 +27,19 @@ import { TemasComponent } from './temas/temas.component';
     EntrarComponent,
     CadastrarComponent,
     InicioComponent,
-    TemasComponent
+    TemasComponent,
+    EditarTemaComponent,
+    DeletarTemaComponent,
+    EditarPostagemComponent,
+    DeletarPostagemComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

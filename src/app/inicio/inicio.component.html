@@ -26,17 +26,97 @@
         <button class="nav-link active" id="todasPostagens-tab" data-bs-toggle="tab" data-bs-target="#todasPostagens" type="button" role="tab" aria-controls="todasPostagens" aria-selected="true">Todas as postagens</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="minhasPostagens-tab" data-bs-toggle="tab" data-bs-target="#minhasPostagens" type="button" role="tab" aria-controls="minhasPostagens" aria-selected="false">Minhas postagens</button>
+        <button class="nav-link" id="minhasPostagens-tab" data-bs-toggle="tab" data-bs-target="#minhasPostagens" type="button" role="tab" aria-controls="minhasPostagens" aria-selected="false" (click)="getUsuarioById()">Minhas postagens</button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="postagensTema-tab" data-bs-toggle="tab" data-bs-target="#postagensTema" type="button" role="tab" aria-controls="postagensTema" aria-selected="false">Postagens por tema</button>
       </li>
     </ul>
-  
+
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">...</div>
-      <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">...</div>
-      <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="postagensTema-tab">...</div>
+      <!-- ! Todas as postagens - Inicio -->
+      <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
+
+        <input type="text" class="form-control w-50 mt-3 d-block mx-auto" [(ngModel)]="tituloPostagem" (input)="getPostagemByTitulo()" placeholder="Pesquise por um titulo">
+
+        <div class="row d-flex flex-wrap mt-3">
+          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of listaPostagens | orderBy : key : reverse" >
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <img src="{{postagem.usuario.foto}}" alt="" class="rounded-circle me-2" height="40">
+                  <h4>{{postagem.titulo}}</h4>
+                </div>
+                <small class="text-secondary">Tema da postagem: {{postagem.tema.descricao}}</small>
+                <p>{{postagem.texto}}</p>
+                <div class="d-flex flex-column">
+                  <small class="text-secondary">Publicado por: {{postagem.usuario.nome}}</small>
+                  <small class="text-secondary">Postagem feita às {{postagem.data | date: 'HH:mm'}} do dia {{postagem.data | date: 'dd/MM/yyyy'}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- ! Todas as postagens - Fim -->
+
+      <!-- ? Minhas postagens - Inicio -->
+      <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">
+        <div class="row d-flex flex-wrap mt-3">
+
+          <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of usuario.postagem  | orderBy : key : reverse">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <img src="{{usuario.foto}}" alt="Foto do dono da postagem" class="rounded-circle me-2" height="40">
+                  <h4>{{postagem.titulo}}</h4>
+                </div>
+                <small class="text-secondary">Tema da postagem: {{postagem.tema.descricao}}</small>
+                <p>{{postagem.texto}}</p>
+                <div class="d-flex flex-column">
+                  <small class="text-secondary">Publicado por: {{usuario.nome}}</small>
+                  <small class="text-secondary">Postagem feita às {{postagem.data | date: 'HH:mm'}} do dia {{postagem.data | date: 'dd/MM/yyyy'}}</small>
+                </div>
+                <div class="d-flex justify-content-around mt-3">
+                  <button class="btn btn-outline-info w-25" [routerLink]="['/editarPostagem', postagem.id]">Editar</button>
+                  <button class="btn btn-outline-danger w-25" [routerLink]="['/apagarPostagem', postagem.id]">Apagar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- ? Minhas postagens - Fim -->
+
+      <!-- ! Postagens por tema - Inicio -->
+      <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="postagensTema-tab">
+        <input type="text" class="form-control w-50 mt-3 d-block mx-auto" [(ngModel)]="descricaoTema" (input)="getTemaByDescricao()" placeholder="Pesquise por um tema">
+        <div class="row d-flex flex-wrap mt-3" *ngFor="let tema of listaTemas">
+            <div class="col-md-4 mb-3 d-flex align-items-stretch" *ngFor="let postagem of tema.postagem  | orderBy : key : reverse">
+              <div class="card w-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <img src="{{postagem.usuario.foto}}" alt="" class="rounded-circle me-2" height="40">
+                    <h4>{{postagem.titulo}}</h4>
+                  </div>
+                  <small class="text-secondary">Tema da postagem: {{tema.descricao}}</small>
+                  <p>{{postagem.texto}}</p>
+                  <div class="d-flex flex-column">
+                    <small class="text-secondary">Publicado por: {{postagem.usuario.nome}}</small>
+                    <small class="text-secondary">Postagem feita às {{postagem.data | date: 'HH:mm'}} do dia {{postagem.data | date: 'dd/MM/yyyy'}}</small>
+                  </div>
+                  <div class="d-flex justify-content-around mt-3">
+                    <button class="btn btn-outline-info w-25">Editar</button>
+                    <button class="btn btn-outline-danger w-25">Apagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- ! Postagens por tema - Fim -->
     </div>
   </div>
 </div>
@@ -55,26 +135,28 @@
         <form>
           <div class="form-group mb-3">
             <label for="titulo">Titulo da postagem:</label>
-            <input type="text" placeholder="Digite o titulo da sua postagem" class="form-control" id="titulo" name="titulo">
+            <input type="text" placeholder="Digite o titulo da sua postagem" class="form-control" id="titulo" name="titulo" [(ngModel)]="postagem.titulo">
           </div>
           <div class="form-group mb-3">
             <label for="titulo">Texto da postagem:</label>
-            <textarea name="texto" id="texto" class="form-control" rows="5" placeholder="Digite o texto da sua postagem"></textarea>
+            <textarea name="texto" id="texto" class="form-control" rows="5" placeholder="Digite o texto da sua postagem" [(ngModel)]="postagem.texto"></textarea>
           </div>
 
           <hr>
           <p>Escolha uma tema, ou <a routerLink="/temas" data-bs-dismiss="modal">cadastre um novo</a></p>
 
           <div class="form-group">
-            <select name="tema" id="tema" class="form-control">
-              <option value="">Tema selecionado</option>
+            <select name="tema" id="tema" class="form-control" [(ngModel)]="temaId" (change)="getTemaById()">
+              <option *ngFor="let tema of listaTemas" value="{{tema.id}}">{{tema.descricao}}</option>
             </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Publicar</button>
+
+        <button type="button" class="btn btn-primary" (click)="publicarPostagem()" data-bs-dismiss="modal">Publicar</button>
+
       </div>
     </div>
   </div>
