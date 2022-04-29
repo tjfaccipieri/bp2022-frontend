@@ -18,6 +18,9 @@ import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-post
 import { PerfilComponent } from './perfil/perfil.component';
 import { OrderModule } from 'ngx-order-pipe';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,9 @@ import { OrderModule } from 'ngx-order-pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

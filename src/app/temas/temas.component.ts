@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { Tema } from '../model/tema';
+import { AlertasService } from '../service/alertas.service';
 
 @Component({
   selector: 'app-temas',
@@ -16,14 +17,15 @@ export class TemasComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private temaService: TemasService
+    private temaService: TemasService,
+    private alerta: AlertasService
     ) { }
 
   ngOnInit(){
     window.scroll(0,0)
     if (environment.token == '') {
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para cadastrar um novo tema')
+      this.alerta.info('','Você precisa estar logado para cadastrar um novo tema')
     }
 
     this.buscarTemas()
@@ -38,7 +40,7 @@ export class TemasComponent implements OnInit {
   cadastrarTema(){
     this.temaService.postTema(this.tema).subscribe((resp: Tema) => {
       this.tema = resp;
-      alert('Tema cadastrado com sucesso')
+      this.alerta.sucesso('Temos um tema','Tema cadastrado com sucesso')
       this.buscarTemas()
     })
   }

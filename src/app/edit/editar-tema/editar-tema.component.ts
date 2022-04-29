@@ -3,6 +3,7 @@ import { environment } from './../../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tema } from 'src/app/model/tema';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-editar-tema',
@@ -17,14 +18,15 @@ export class EditarTemaComponent implements OnInit {
   constructor(
     private router: Router,
     private temaService: TemasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit() {
     window.scroll(0,0)
     if(environment.token == '') {
       this.router.navigate(['/entrar']);
-      alert('Você precisa estar logado para editar o tema.')
+      this.alerta.info('','Você precisa estar logado para editar o tema.')
     }
 
     this.idTema = this.route.snapshot.params['id']
@@ -40,7 +42,7 @@ export class EditarTemaComponent implements OnInit {
   editarTema(){
     this.temaService.putTema(this.tema).subscribe((resp: Tema) => {
       this.tema = resp;
-      alert('Tema editado com sucesso');
+      this.alerta.sucesso('','Tema editado com sucesso');
       this.router.navigate(['/temas'])
     })
   }
