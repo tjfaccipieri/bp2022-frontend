@@ -11,36 +11,17 @@ import { Tema } from '../model/tema';
 })
 export class TemasComponent implements OnInit {
 
-  tema: Tema = new Tema()
-  listaTemas: Tema[]
-
   constructor(
-    private router: Router,
-    private temaService: TemasService
-    ) { }
+    private router: Router
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     window.scroll(0,0)
-    if (environment.token == '') {
+
+    if(environment.token == '') {
+      alert('Você precisa estar logado para acessar essa tela')
       this.router.navigate(['/entrar'])
-      alert('Você precisa estar logado para cadastrar um novo tema')
     }
-
-    this.buscarTemas()
-  }
-
-  buscarTemas(){
-    this.temaService.getAllTemas().subscribe((resp: Tema[]) => {
-      this.listaTemas = resp
-    })
-  }
-
-  cadastrarTema(){
-    this.temaService.postTema(this.tema).subscribe((resp: Tema) => {
-      this.tema = resp;
-      alert('Tema cadastrado com sucesso')
-      this.buscarTemas()
-    })
   }
 
 }

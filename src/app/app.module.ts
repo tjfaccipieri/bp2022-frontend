@@ -18,6 +18,7 @@ import { DeletarPostagemComponent } from './delete/deletar-postagem/deletar-post
 import { PerfilComponent } from './perfil/perfil.component';
 import { OrderModule } from 'ngx-order-pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { PostagemService } from '../service/postagem.service';
 import { TemasService } from '../service/temas.service';
 import { Tema } from '../model/tema';
@@ -8,12 +9,16 @@ import { Postagem } from '../model/postagem';
 import { Usuario } from '../model/usuario';
 import { AuthService } from '../service/auth.service';
 
+import { environment } from 'src/environments/environment.prod';
+
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+
 
   listaTemas: Tema[]
   tema: Tema = new Tema()
@@ -37,10 +42,12 @@ export class InicioComponent implements OnInit {
     private auth: AuthService
   ) { }
 
+
   ngOnInit() {
     window.scroll(0,0)
 
     if(environment.token == '') {
+
       this.router.navigate(['/entrar'])
       alert('Você precisa estar logado para acessar essa tela')
     }
