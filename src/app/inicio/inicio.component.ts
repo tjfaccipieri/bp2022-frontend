@@ -10,7 +10,6 @@ import { Usuario } from '../model/usuario';
 import { AuthService } from '../service/auth.service';
 import { AlertasService } from '../service/alertas.service';
 
-import { environment } from 'src/environments/environment.prod';
 
 
 @Component({

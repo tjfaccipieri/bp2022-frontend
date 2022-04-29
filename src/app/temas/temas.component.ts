@@ -1,8 +1,8 @@
+import { Tema } from './../model/tema';
 import { TemasService } from './../service/temas.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
-import { Tema } from '../model/tema';
 import { AlertasService } from '../service/alertas.service';
 
 @Component({
@@ -11,6 +11,9 @@ import { AlertasService } from '../service/alertas.service';
   styleUrls: ['./temas.component.css']
 })
 export class TemasComponent implements OnInit {
+
+  tema: Tema = new Tema()
+  listaTemas: Tema[]
 
   constructor(
     private router: Router,
